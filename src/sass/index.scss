@@ -1,14 +1,15 @@
+// Utils
+@import './utils/mixin';
+@import './utils/modern-normalize';
+@import './utils/variables';
+@import './utils/visually-hidden';
+
 // Base
 @import './base/body_settings';
 @import './base/reset';
 
 // Components
 @import './components/button';
+@import './components/modal';
 
 // Layout
-
-// Utils
-@import './utils/mixin';
-@import './utils/modern-normalize';
-@import './utils/variables';
-@import './utils/visually-hidden';
