@@ -1,32 +1,35 @@
 {
-  "name": "webpack",
-  "version": "1.0.0",
+  "name": "goit-for-team-4-project",
+  "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "homepage": "https://Shlov.github.io/goit-for-team-4-project",
   "scripts": {
-    "start": "webpack --mode=development",
-    "dev": "webpack-dev-server --mode=development",
-    "prod": "webpack --mode=production"
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /goit-for-team-4-project/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
   },
   "keywords": [],
-  "author": "Saburdo Vitaliy",
+  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.20.7",
-    "@babel/preset-env": "^7.20.2",
-    "babel-loader": "^9.1.0",
-    "css-loader": "^6.7.3",
-    "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.7.2",
-    "sass": "^1.57.1",
-    "sass-loader": "^13.2.0",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
+  "bugs": {
+    "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
-    "clean-webpack-plugin": "^4.0.0",
-    "lodash": "^4.17.21"
-  }
+    "axios": "^1.2.1",
+    "basiclightbox": "^5.0.4",
+    "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.5",
+    "smoothscroll-for-websites": "^1.4.10"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.0",
+    "buffer": "^6.0.3",
+    "parcel": "^2.6.0",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "posthtml-include": "^1.7.4"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
 }
