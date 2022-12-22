@@ -1,7 +1,0 @@
-.section {
-    @include section(60px, 60px);
-
-    @include mq(tab) {
-        @include section();
-    }
-}
