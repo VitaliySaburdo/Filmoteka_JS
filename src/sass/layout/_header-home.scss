@@ -38,6 +38,9 @@
 
 .header__logo--text {
   display: none;
+  @include mq('tab') {
+    display: block;
+  }
 }
 .header__logo--link {
   display: flex;
