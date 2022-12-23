@@ -40,19 +40,27 @@
   display: none;
   @include mq('tab') {
     display: block;
+    @include fonts(30px, 500, 35px);
+    color: var(--cl-txt-wite);
   }
 }
 .header__logo--link {
   display: flex;
   margin-top: 40px;
   margin-bottom: 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  @include mq('desk') {
+    gap: 10px;
+  }
 }
 .header__container {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 .nav__list {
-  margin-top: 44px;
   display: flex;
   gap: 40px;
 }
@@ -82,10 +90,10 @@
   margin: auto;
   border-bottom: 1px solid var(--cl-ivory);
 
-  @media screen and (min-width: 768px) {
+  @include mq('tab') {
     width: 336px;
   }
-  @media screen and (min-width: 1280px) {
+  @include mq('desk') {
     width: 394px;
   }
 }
