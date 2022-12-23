@@ -1,0 +1,113 @@
+.header {
+  height: 230px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  background-image: url(../images/Header/bcg-img@1x-mob.jpg);
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url(../images/Header/bcg-img@2x-mob.jpg);
+  }
+  @include mq('tab') {
+    height: 216px;
+    background-image: url(../images/Header/bcg-img@1x-tab.jpg);
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../images/Header/bcg-img@1x-tab.jpg);
+    }
+  }
+  @include mq('desk') {
+    background-image: url(../images/Header/bcg-img@1x-desk.jpg);
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../images/Header/bcg-img@1x-desk.jpg);
+    }
+  }
+}
+
+.header__logo--text {
+  display: none;
+}
+.header__logo--link {
+  display: flex;
+  margin-top: 40px;
+  margin-bottom: 54px;
+}
+.header__container {
+  display: flex;
+  justify-content: space-between;
+}
+.nav__list {
+  margin-top: 44px;
+  display: flex;
+  gap: 40px;
+}
+.nav__link {
+  @include fonts(12px, 500, 14px);
+  text-transform: uppercase;
+  color: var(--cl-white);
+}
+.nav__link--current {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #ff001b;
+  }
+}
+.header__search-form {
+  width: 280px;
+
+  @include centered-flex;
+
+  margin: auto;
+  border-bottom: 1px solid var(--cl-ivory);
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 394px;
+  }
+}
+
+.input-form {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: transparent;
+  padding: 5px;
+  color: var(--cl-ivory);
+
+  &::placeholder {
+    color: var(--cl-ivory);
+  }
+}
+
+.button-form {
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.form-icon {
+  // fill: var(--cl-white);
+  color: var(--cl-ivory);
+}

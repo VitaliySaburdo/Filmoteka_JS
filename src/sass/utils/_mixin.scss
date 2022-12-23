@@ -8,10 +8,10 @@
   flex-basis: calc((100% - #{$card-gap} * (#{$card-item} - 1)) / #{$card-item});
 }
 
-@mixin fonts($fs: 14px, $fw: 400, $lh: 1.5) {
+@mixin fonts($fs, $fw, $lh) {
   font-size: $fs;
   font-weight: $fw;
-  line-height: $lh;
+  line-height: calc($lh/$fs);
 }
 
 @mixin section($pt: 60px, $pb: 60px) {

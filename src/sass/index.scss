@@ -7,9 +7,11 @@
 // Base
 @import './base/body_settings';
 @import './base/reset';
+@import './base/container';
 
 // Components
 @import './components/button';
-@import './components/modal';
+// @import './components/modal';
 
 // Layout
+@import './layout/header-home';
