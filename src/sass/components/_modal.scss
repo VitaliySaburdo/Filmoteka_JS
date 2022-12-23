@@ -14,15 +14,15 @@
   transition-duration: 350ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-  &.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
+  // &.is-hidden {
+  //   opacity: 0;
+  //   pointer-events: none;
+  // }
 }
 
 .modal-window {
   position: relative;
-  top: 65%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 48px 20px 40px 20px;
@@ -30,7 +30,7 @@
   background-color: var(--cl-almost-white);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-radius: 10px;
 
   @include mq('tab') {
     display: flex;
@@ -45,6 +45,9 @@
     padding: 40px 12px 40px 12px;
   }
 }
+.modal__icon {
+  fill: currentColor;
+}
 .modal__btn-close {
   position: absolute;
   top: 8px;
@@ -57,12 +60,16 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  border-radius: 50%;
   transition-duration: 350ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-property: color;
+  transition-property: background-color;
+
   &:hover,
   &:focus {
-    color: var(--cl-accent);
+    color: var(--cl-white);
+    background-color: var(--cl-accent);
   }
 }
 .modal__sidebar--left {
