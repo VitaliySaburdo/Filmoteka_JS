@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'ab57a8d74b0df3fdba80a78e42f32d17';
-const currentHash = localStorage.getItem('localStorageHash');
 
 export default class NewsApiService {
   constructor() {
@@ -11,21 +10,9 @@ export default class NewsApiService {
     this.lang = '';
   }
   // Запрос популярных фильмов на главную страницу
-  async fetchPopularMovie() {
+  async fetchTrendingMovie() {
     try {
-      const url = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=${currentHash}&page=${this.page}`;
-      detectedURLForPagination(url);
-      const response = await axios.get(url);
-      obtainFetchDataForPagination(response.data);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  // Запрос детальной информации по id для модалки
-  async getFilmDetails(id) {
-    try {
-      const url = `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=${currentHash}`;
+      const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -33,6 +20,37 @@ export default class NewsApiService {
     }
   }
 
+  // Запрос детальной информации по id для модалки
+  async getFilmDetails(id) {
+    try {
+      const url = `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // Запрос детальной информации по id для модалки
+  async getFilmOnSearch() {
+    try {
+      const url = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  // Запрос детальной информации по id для модалки
+  async getGenres() {
+    try {
+      const url = `${BASE_URL}genre/movie/list?api_key=${API_KEY}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   get query() {
     return this.searchQuery;
   }

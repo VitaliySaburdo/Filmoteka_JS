@@ -4,7 +4,7 @@ import { murkupMovie } from './markupModal';
 const newData = new newsApiService();
 
 const cardContainer = document.querySelector('.modal-window');
-const card = document.querySelector('.film-list');
+const card = document.querySelector('.gallery-list');
 const modal = document.querySelector('.modal-backdrop');
 const scrollController = {
   scrollPosition: 0,
@@ -34,9 +34,10 @@ if (card) {
 
 function onOpenModal(event) {
   const selectedMovie = event.target.closest('li');
+  console.log(selectedMovie);
   // Получаю id
-  const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
-
+  const selectedMovieId = selectedMovie.getAttribute('data-id');
+  console.log(selectedMovieId);
   if (event.target.nodeName !== 'BUTTON') {
     // Открываю окно
     openModal();
@@ -48,13 +49,11 @@ function onOpenModal(event) {
       closeBtn.addEventListener('click', onCloseModal);
       document.addEventListener('keydown', onEscBtn);
       document.addEventListener('click', onBackDrop);
-      exportIdToLocalStorage(data);
     });
   }
 }
 function renderModalContent(data) {
   cardContainer.innerHTML = murkupMovie(data);
-  changeLanguage();
 }
 function openModal() {
   // Тут бы спинер добавить
