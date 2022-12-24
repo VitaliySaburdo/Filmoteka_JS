@@ -1,5 +1,6 @@
 import newsApiService from './fetch';
 import { murkupMovie } from './markupModal';
+import { load, save, remove } from './localStorage';
 
 const newData = new newsApiService();
 
@@ -34,24 +35,28 @@ if (card) {
 
 function onOpenModal(event) {
   const selectedMovie = event.target.closest('li');
-  console.log(selectedMovie);
+
   // Получаю id
   const selectedMovieId = selectedMovie.getAttribute('data-id');
-  console.log(selectedMovieId);
   if (event.target.nodeName !== 'BUTTON') {
     // Открываю окно
     openModal();
     //Получение данных о фильме в модалку
     newData.getFilmDetails(selectedMovieId).then(data => {
-      console.log(data);
       renderModalContent(data);
       const closeBtn = document.querySelector('.js-close');
       closeBtn.addEventListener('click', onCloseModal);
       document.addEventListener('keydown', onEscBtn);
       document.addEventListener('click', onBackDrop);
+      const queueBtn = document.querySelector('.js-queue');
+      const watchedBtn = document.querySelector('.js-watched');
+      watchedBtn.addEventListener('click', () => {
+        localStorage.setItem('watched', JSON.stringify(selectedMovieId));
+      });
     });
   }
 }
+
 function renderModalContent(data) {
   cardContainer.innerHTML = murkupMovie(data);
 }
@@ -79,4 +84,14 @@ function onEscBtn(event) {
   if (event.key === 'Escape') {
     onCloseModal();
   }
+}
+
+function inList(id, list) {
+  let arrList = [];
+  let localListJson = load(list);
+  if (localListJson) {
+    arrList = [...localListJson];
+  }
+  const listSet = new Set(arrList);
+  return listSet.has(id);
 }

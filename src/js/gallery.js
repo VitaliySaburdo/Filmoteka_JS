@@ -7,7 +7,7 @@ const ApiService = new newsApiService();
 ApiService.getGenres().then(({ genres }) => {
   //Добавление списка жанров в localStorage
   saveLs('genresList', genres);
-  console.log(JSON.parse(localStorage.getItem('genresList')));
+  JSON.parse(localStorage.getItem('genresList'));
 });
 
 const saveLs = (key, value) => {
@@ -59,7 +59,7 @@ function checkDate(release_date) {
   if (release_date) {
     return release_date.split('-')[0];
   }
-  return 'Coming soon';
+  return '';
 }
 
 function checkTitle(original_title) {
