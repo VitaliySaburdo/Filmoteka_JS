@@ -86,37 +86,9 @@ function renderMarkup() {
     console.log({ genres });
     //Добавление списка жанров в localStorage
     saveLs('genresList', genres);
-    // console.log(data);
-
-    // if (data.results) {
-    //   data.results.forEach(film => {
-    //     const { genre_ids, release_date } = film;
-    //     genres.forEach(({ name, id }) => {
-    //       if (genre_ids.includes(id)) {
-    //         if (genre_ids.length > 2) {
-    //           genre_ids.splice(2, genre_ids.length - 1, 'Other');
-    //         }
-    //         genre_ids.splice(genre_ids.indexOf(id), 1, name);
-    //       }
-    //       film.genre_names = genre_ids.join(', ');
-    //       if (film.release_date) {
-    //         film.release_date = release_date.slice(0, 4);
-    //       }
-    //     });
-    //   });
-    // }
-    // const markupList = createListMarkup(data.results);
-    // if (list) {
-    //   list.innerHTML = markupList;
-    // }
   });
 }
 
-// getTrending(1).then(r => {
-//   renderMarkup(r),
-//     //Сохранение результата запроса в  localStorage
-//     saveLs('moviesData', r.results);
-// });
 const saveLs = (key, value) => {
   try {
     const serializedState = JSON.stringify(value);
