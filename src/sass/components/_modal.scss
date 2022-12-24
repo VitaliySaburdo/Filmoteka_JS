@@ -140,7 +140,9 @@
   align-items: center;
 }
 .modal__vote {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 36px;
   height: 16px;
   border-radius: 5px;
@@ -149,7 +151,9 @@
   color: var(--cl-white);
 }
 .modal__votes {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 36px;
   height: 16px;
   border-radius: 5px;
