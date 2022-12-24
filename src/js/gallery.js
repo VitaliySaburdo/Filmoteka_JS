@@ -72,7 +72,7 @@ function changeGenre(genre_ids) {
     }
   }
   if (genrArrey.length > 2) {
-    return genrArrey.slice(0, 2).join(', ');
+    return genrArrey.slice(0, 2).join(', ') + ', Other';
   }
   return genrArrey.join(', ');
 }
