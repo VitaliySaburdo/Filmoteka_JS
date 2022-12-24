@@ -65,18 +65,6 @@
     @include fonts(20px, 500, 24px);
   }
 }
-.card__rating {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  @include fonts(12px, 500, 14px);
-  width: 40px;
-  height: 20px;
-  border-radius: 5px;
-  background-color: var(--cl-accent);
-  margin-right: 2px;
-  color: var(--cl-white);
-}
 
 .gallery_img {
   width: 280px;

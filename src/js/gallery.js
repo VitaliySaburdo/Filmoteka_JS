@@ -4,6 +4,21 @@ const imageGallaryRef = document.querySelector('.gallery-list');
 
 const ApiService = new newsApiService();
 
+ApiService.getGenres().then(({ genres }) => {
+  //Добавление списка жанров в localStorage
+  saveLs('genresList', genres);
+  console.log(JSON.parse(localStorage.getItem('genresList')));
+});
+
+const saveLs = (key, value) => {
+  try {
+    const serializedState = JSON.stringify(value);
+    localStorage.setItem(key, serializedState);
+  } catch (error) {
+    console.error('Set state error: ', error.message);
+  }
+};
+
 ApiService.fetchTrendingMovie().then(data => {
   renderGalleryFilms(data.results);
 });
@@ -17,15 +32,15 @@ function renderGalleryFilms(data) {
         poster_path,
         title,
         genre_ids,
-        vote_average,
+        release_date,
       }) => `<li class="gallery__item" data-id="${id}">
         <img src="${renderImg(
           poster_path
-        )}" alt="${original_title}" class="gallery_img" width="395" height="574" />
-        <h2 class="gallery__title">${title}</h2>
-        <p class="gallery__txt">${changeGenre(
-          genre_ids
-        )}<span class="card__rating"> ${vote_average.toFixed(1)}</span></p>
+        )}" alt="${title}" class="gallery_img" width="395" height="574" />
+        <h2 class="gallery__title">${checkTitle(original_title)}</h2>
+        <p class="gallery__txt">${changeGenre(genre_ids)} | ${checkDate(
+        release_date
+      )}
       </li>`
     )
     .join('');
@@ -40,28 +55,24 @@ function renderImg(poster_path) {
   return `https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png?20170513175923`;
 }
 
+function checkDate(release_date) {
+  if (release_date) {
+    return release_date.split('-')[0];
+  }
+  return 'Coming soon';
+}
+
+function checkTitle(original_title) {
+  const arr = original_title.split('');
+
+  if (arr.length >= 33) {
+    return arr.slice(0, 33).join('') + '...';
+  }
+  return original_title;
+}
+
 function changeGenre(genre_ids) {
-  const genresInfo = [
-    { id: 28, name: 'Action' },
-    { id: 12, name: 'Adventure' },
-    { id: 16, name: 'Animation' },
-    { id: 35, name: 'Comedy' },
-    { id: 80, name: 'Crime' },
-    { id: 99, name: 'Documentary' },
-    { id: 18, name: 'Drama' },
-    { id: 10751, name: 'Family' },
-    { id: 14, name: 'Fantasy' },
-    { id: 36, name: 'History' },
-    { id: 27, name: 'Horror' },
-    { id: 10402, name: 'Music' },
-    { id: 9648, name: 'Mystery' },
-    { id: 10749, name: 'Romance' },
-    { id: 878, name: 'Science Fiction' },
-    { id: 10770, name: 'TV Movie' },
-    { id: 53, name: 'Thriller' },
-    { id: 10752, name: 'War' },
-    { id: 37, name: 'Western' },
-  ];
+  const genresInfo = JSON.parse(localStorage.getItem('genresList'));
 
   const genrArrey = [];
   for (const genre_id of genre_ids) {
@@ -76,24 +87,3 @@ function changeGenre(genre_ids) {
   }
   return genrArrey.join(', ');
 }
-
-// ${changeGenre(genresInfo, genre_ids)} | ${
-//         release_date.split('-')[0] || 'Coming soon'
-//       }
-renderMarkup();
-function renderMarkup() {
-  ApiService.getGenres().then(({ genres }) => {
-    console.log({ genres });
-    //Добавление списка жанров в localStorage
-    saveLs('genresList', genres);
-  });
-}
-
-const saveLs = (key, value) => {
-  try {
-    const serializedState = JSON.stringify(value);
-    localStorage.setItem(key, serializedState);
-  } catch (error) {
-    console.error('Set state error: ', error.message);
-  }
-};
