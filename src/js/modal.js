@@ -1,33 +1,15 @@
 import newsApiService from './fetch';
 import { murkupMovie } from './markupModal';
-import { load, save, remove } from './localStorage';
+import { addToStorage } from './localStorage';
+import { scrollController } from './scroll';
 
 const newData = new newsApiService();
 
 const cardContainer = document.querySelector('.modal-window');
 const card = document.querySelector('.gallery-list');
 const modal = document.querySelector('.modal-backdrop');
-const scrollController = {
-  scrollPosition: 0,
-  disabledScroll() {
-    scrollController.scrollPosition = window.scrollY;
-    document.body.style.cssText = `
-      overflow: hidden;
-      position: fixed;
-      top: -${scrollController.scrollPosition}px;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      padding-right: ${window.innerWidth - document.body.offsetWidth}px
-    `;
-    document.documentElement.style.scrollBehavior = 'unset';
-  },
-  enabledScroll() {
-    document.body.style.cssText = '';
-    window.scroll({ top: scrollController.scrollPosition });
-    document.documentElement.style.scrollBehavior = '';
-  },
-};
+
+let watchedId = [];
 
 if (card) {
   card.addEventListener('click', onOpenModal);
@@ -50,8 +32,14 @@ function onOpenModal(event) {
       document.addEventListener('click', onBackDrop);
       const queueBtn = document.querySelector('.js-queue');
       const watchedBtn = document.querySelector('.js-watched');
+
       watchedBtn.addEventListener('click', () => {
-        localStorage.setItem('watched', JSON.stringify(selectedMovieId));
+        watchedBtn.textContent = 'remove from watched';
+        if (watchedId.includes(selectedMovieId)) {
+          return;
+        }
+        watchedId.push(selectedMovieId);
+        addToStorage('watched', JSON.stringify(watchedId));
       });
     });
   }

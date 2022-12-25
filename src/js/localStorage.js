@@ -1,31 +1,27 @@
-// Принимает ключ `key` по которому будет произведена выборка.
-const load = key => {
+export function addToStorage(key, value) {
   try {
-    let serializedState = localStorage.getItem(key);
-
-    return (serializedState = JSON.parse(serializedState) || undefined);
-  } catch (err) {
-    console.error('Get state error: ', err);
+    if (typeof value === 'string') {
+      localStorage.setItem(key, value);
+    } else {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+  } catch (error) {
+    console.error(error);
   }
-};
+}
 
-// Принимает ключ `key` и значение `value`.
-const save = (key, value) => {
+export function getFromStorage(key) {
   try {
-    const serializedState = JSON.stringify(value);
-    localStorage.setItem(key, serializedState);
-  } catch (err) {
-    console.error('Set state error: ', err);
+    return JSON.parse(localStorage.getItem(key));
+  } catch (error) {
+    console.error(error);
   }
-};
+}
 
-// Принимает ключ `key`
-const remove = key => {
+export function removeFromStorage(key) {
   try {
     localStorage.removeItem(key);
-  } catch (err) {
-    console.error('Remove state error: ', err);
+  } catch (error) {
+    console.error(error);
   }
-};
-
-export { load, save, remove };
+}
