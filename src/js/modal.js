@@ -73,13 +73,3 @@ function onEscBtn(event) {
     onCloseModal();
   }
 }
-
-function inList(id, list) {
-  let arrList = [];
-  let localListJson = load(list);
-  if (localListJson) {
-    arrList = [...localListJson];
-  }
-  const listSet = new Set(arrList);
-  return listSet.has(id);
-}

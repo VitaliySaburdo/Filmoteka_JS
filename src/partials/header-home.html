@@ -1,35 +1,40 @@
 <header class="header">
   <div class="container">
     <div class="header__container">
-  <a href="./index.html" class="header__logo--link link">
-    <svg class="header__icon" width="24" height="23">
-        <use href="./images/sprite.svg#film">
-      </svg>
-    <span class="header__logo--text"> Filmoteka </span>
-  </a>
-  <nav class="nav nav-js">
-      <ul class="nav__list">
-        <li class="nav__item list">
-          <a class="nav__link nav__link--current link" href="./index.html">
-            Home
-          </a>
-        </li>
-        <li class="nav__item list">
-          <a class="nav__link link" href="#">
-            My library
-          </a>
-        </li>
-          </div>
-    <div class="header__form">
-    <form class="header__search-form" id="header-form">
-      <input class="input-form" type="text" name="searchQuery" autocomplete="off"
-        placeholder="Movie search" />
-      <button class="button-form" type="submit">
-        <svg width="12" height="12" aria-label="Search">
-          <use href="./images/sprite.svg#search"></use>
+      <a href="./index.html" class="header__logo--link link">
+        <svg class="header__icon" width="24" height="23">
+          <use href="./images/sprite.svg#film">
         </svg>
-      </button>
-    </form>
+        <span class="header__logo--text"> Filmoteka </span>
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item list">
+            <a class="nav__link nav__link--current link" href="./index.html">
+              Home
+            </a>
+          </li>
+          <li class="nav__item list">
+            <a class="nav__link link" href="#"> My library </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__form">
+      <form class="header__search-form" id="header-form">
+        <input
+          class="input-form"
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Movie search"
+        />
+        <button class="button-form" type="submit">
+          <svg width="12" height="12" aria-label="Search">
+            <use href="./images/sprite.svg#search"></use>
+          </svg>
+        </button>
+      </form>
+    </div>
   </div>
-</div>
 </header>
