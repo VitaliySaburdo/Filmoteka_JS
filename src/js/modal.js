@@ -10,8 +10,6 @@ const cardContainer = document.querySelector('.modal-window');
 const card = document.querySelector('.gallery-list');
 const modal = document.querySelector('.modal-backdrop');
 
-// let watchedId = [];
-
 if (card) {
   card.addEventListener('click', onOpenModal);
 }

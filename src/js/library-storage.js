@@ -17,17 +17,20 @@ export function libraryStorage(movieData) {
   // Подключаем кнопки модального окна
   const watchBtn = document.querySelector('.js-watched');
   const queueBtn = document.querySelector('.js-queue');
-  // console.log(localStorage.getItem('queue').includes(filmObject));
+  // console.log(localStorage.getItem('watch').includes(filmObject));
+  // console.log(localStorage.getItem('watch'));
 
-  if (localStorage.getItem('watch').includes(filmObject)) {
-    watchBtn.classList.add('button--accent-btn');
-    watchBtn.textContent = 'REMOVE FROM WATCHED';
-  }
+  // if (!localStorage.getItem('watch')) {
+  //   return;
+  // } else if (localStorage.getItem('watch').includes(filmObject)) {
+  //   watchBtn.classList.add('button--accent-btn');
+  //   watchBtn.textContent = 'REMOVE FROM WATCHED';
+  // }
 
-  if (localStorage.getItem('queue').includes(filmObject)) {
-    queueBtn.classList.add('button--accent-btn');
-    queueBtn.textContent = 'REMOVE FROM QUEUE';
-  }
+  // if (localStorage.getItem('queue').includes(filmObject)) {
+  //   queueBtn.classList.add('button--accent-btn');
+  //   queueBtn.textContent = 'REMOVE FROM QUEUE';
+  // }
 
   watchBtn.addEventListener('click', () => {
     if (movieData) {
