@@ -1,7 +1,8 @@
 import newsApiService from './fetch';
 import { murkupMovie } from './markupModal';
-import { addToStorage } from './localStorage';
+// import { addToStorage } from './localStorage';
 import { scrollController } from './scroll';
+import { libraryStorage } from './library-storage.js';
 
 const newData = new newsApiService();
 
@@ -9,7 +10,7 @@ const cardContainer = document.querySelector('.modal-window');
 const card = document.querySelector('.gallery-list');
 const modal = document.querySelector('.modal-backdrop');
 
-let watchedId = [];
+// let watchedId = [];
 
 if (card) {
   card.addEventListener('click', onOpenModal);
@@ -24,24 +25,14 @@ function onOpenModal(event) {
     // Открываю окно
     openModal();
     //Получение данных о фильме в модалку
-    newData.getFilmDetails(selectedMovieId).then(data => {
-      renderModalContent(data);
-      const closeBtn = document.querySelector('.js-close');
-      closeBtn.addEventListener('click', onCloseModal);
-      document.addEventListener('keydown', onEscBtn);
-      document.addEventListener('click', onBackDrop);
-      const queueBtn = document.querySelector('.js-queue');
-      const watchedBtn = document.querySelector('.js-watched');
-
-      watchedBtn.addEventListener('click', () => {
-        watchedBtn.textContent = 'remove from watched';
-        if (watchedId.includes(selectedMovieId)) {
-          return;
-        }
-        watchedId.push(selectedMovieId);
-        addToStorage('watched', JSON.stringify(watchedId));
-      });
-    });
+    newData
+      .getFilmDetails(selectedMovieId)
+      .then(data => {
+        renderModalContent(data);
+        addModalMovieListeners();
+        libraryStorage(data);
+      })
+      .catch(error => console.error(error));
   }
 }
 
@@ -60,6 +51,17 @@ function onCloseModal() {
   modal.classList.add('is-hidden');
   scrollController.enabledScroll();
   cardContainer.innerHTML = '';
+  removeModalMovieListeners();
+}
+function addModalMovieListeners() {
+  const closeBtn = document.querySelector('.js-close');
+  closeBtn.addEventListener('click', onCloseModal);
+  document.addEventListener('keydown', onEscBtn);
+  document.addEventListener('click', onBackDrop);
+}
+function removeModalMovieListeners() {
+  document.removeEventListener('keydown', onEscBtn);
+  document.removeEventListener('click', onBackDrop);
 }
 
 function onBackDrop(event) {
