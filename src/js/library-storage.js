@@ -17,16 +17,17 @@ export function libraryStorage(movieData) {
   // Подключаем кнопки модального окна
   const watchBtn = document.querySelector('.js-watched');
   const queueBtn = document.querySelector('.js-queue');
+  console.log(localStorage.getItem('queue').includes(filmObject));
 
   if (localStorage.getItem('watch').includes(filmObject)) {
     watchBtn.classList.add('button--accent-btn');
     watchBtn.textContent = 'REMOVE FROM WATCHED';
   }
 
-  // if (localStorage.getItem('queue').includes(filmObject)) {
-  //   queueBtn.classList.add('button--accent-btn');
-  //   queueBtn.textContent = 'REMOVE FROM QUEUE';
-  // }
+  if (localStorage.getItem('queue').includes(filmObject)) {
+    queueBtn.classList.add('button--accent-btn');
+    queueBtn.textContent = 'REMOVE FROM QUEUE';
+  }
 
   watchBtn.addEventListener('click', () => {
     if (movieData) {
@@ -44,6 +45,26 @@ export function libraryStorage(movieData) {
         film.push(movieData);
       }
       localStorage.setItem('watch', JSON.stringify(film));
+    }
+  });
+
+  queueBtn.addEventListener('click', () => {
+    if (movieData) {
+      let film = JSON.parse(localStorage.getItem('queue')) || [];
+      if (film.find(e => e.id === movieData.id)) {
+        queueBtn.classList.remove('button--accent-btn');
+        queueBtn.textContent = 'ADD TO QUEUE';
+        film = film.filter(e => e.id !== movieData.id);
+
+        if (cartItem) {
+          localStorage.removeItem('queue');
+        }
+      } else {
+        queueBtn.classList.add('button--accent-btn');
+        queueBtn.textContent = 'REMOVE FROM QUEUE';
+        film.push(movieData);
+      }
+      localStorage.setItem('queue', JSON.stringify(film));
     }
   });
 }
