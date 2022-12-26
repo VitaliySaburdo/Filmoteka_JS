@@ -1,0 +1,21 @@
+.watched_button {
+  @extend %btn;
+  border-color: #000;
+  color: #000;
+  &.active {
+    background-color: var(--cl-accent);
+    border-color: #fff;
+    color: #fff;
+  }
+}
+
+.queue_button {
+  @extend %btn;
+  border-color: #000;
+  color: #000;
+  &.active {
+    background-color: var(--cl-accent);
+    border-color: #fff;
+    color: #fff;
+  }
+}

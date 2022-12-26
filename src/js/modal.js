@@ -17,8 +17,7 @@ if (card) {
 }
 
 function onOpenModal(event) {
-  const selectedMovie = event.target.closest('li');
-
+  const selectedMovie = event.target.closest('.gallery__item');
   // Получаю id
   const selectedMovieId = selectedMovie.getAttribute('data-id');
   if (event.target.nodeName !== 'BUTTON') {
@@ -30,9 +29,11 @@ function onOpenModal(event) {
       .then(data => {
         renderModalContent(data);
         addModalMovieListeners();
-        libraryStorage(data);
+
+        return data;
       })
-      .catch(error => console.error(error));
+      .then(data => libraryStorage(data))
+      .catch(error => console.log(error));
   }
 }
 
