@@ -17,7 +17,7 @@ export function libraryStorage(movieData) {
   // Подключаем кнопки модального окна
   const watchBtn = document.querySelector('.js-watched');
   const queueBtn = document.querySelector('.js-queue');
-  console.log(localStorage.getItem('queue').includes(filmObject));
+  // console.log(localStorage.getItem('queue').includes(filmObject));
 
   if (localStorage.getItem('watch').includes(filmObject)) {
     watchBtn.classList.add('button--accent-btn');
@@ -67,24 +67,4 @@ export function libraryStorage(movieData) {
       localStorage.setItem('queue', JSON.stringify(film));
     }
   });
-}
-
-function renderLibrary(storageContent) {
-  const markup = storageContent
-    .map(({ id, poster_path, title, genres, release_date }) => {
-      return `<li class="gallery__item" data-id="${id}">
-    <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
-    <img class="gallery__img" id="${id}" src="${IMG_URL + poster_path}
-    "alt="${title}" /></div><div class="gallery__descr">
-    <h2 class="gallery__title">${title}</h2>
-    <p class="gallery__text">${genres
-      .map(({ name }) => name)
-      .join(', ')} | ${release_date.slice(0, 4)}</p>
-    </div></a></li>`;
-    })
-    .join('');
-
-  if (libraryEl) {
-    libraryEl.innerHTML = markup;
-  }
 }
