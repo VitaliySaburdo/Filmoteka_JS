@@ -20,9 +20,7 @@ export function libraryStorage(movieData) {
   // console.log(localStorage.getItem('watch').includes(filmObject));
   // console.log(localStorage.getItem('watch'));
 
-  // if (!localStorage.getItem('watch')) {
-  //   return;
-  // } else if (localStorage.getItem('watch').includes(filmObject)) {
+  //  if (localStorage.getItem('watch').includes(filmObject)) {
   //   watchBtn.classList.add('button--accent-btn');
   //   watchBtn.textContent = 'REMOVE FROM WATCHED';
   // }
