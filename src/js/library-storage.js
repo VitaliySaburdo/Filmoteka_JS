@@ -1,10 +1,7 @@
-import {
-  addToStorage,
-  getFromStorage,
-  removeFromStorage,
-} from './localStorage';
+import { addToStorage, removeFromStorage } from './localStorage';
 
 export const libraryEl = document.querySelector('.library__list');
+console.log(libraryEl);
 
 let watchMovie = [];
 let queueMovie = [];
