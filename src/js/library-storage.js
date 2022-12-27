@@ -1,4 +1,8 @@
-import { addToStorage, removeFromStorage } from './localStorage';
+import {
+  addToStorage,
+  getFromStorage,
+  removeFromStorage,
+} from './localStorage';
 
 export const libraryEl = document.querySelector('.library__list');
 console.log(libraryEl);
@@ -45,7 +49,7 @@ export function libraryStorage(movieData) {
       }
       addToStorage('watch', watchMovie);
     }
-    renderGalleryFilms(watchMovie);
+    renderSavedFilms('watch');
   }
 
   function onQueueBtn() {
@@ -65,8 +69,22 @@ export function libraryStorage(movieData) {
       addToStorage('queue', queueMovie);
     }
   }
+  function clearFilmList() {
+    if (libraryEl) {
+      libraryEl.innerHTML = '';
+    }
+  }
 
-  function renderGalleryFilms(data) {
+  function renderSavedFilms(name) {
+    clearFilmList();
+    const storageMovies = getFromStorage(name);
+    console.log(storageMovies);
+    if (storageMovies) {
+      renderLibrary(storageMovies);
+    }
+  }
+
+  function renderLibrary(data) {
     console.log(data);
     const markup = data
       .map(
