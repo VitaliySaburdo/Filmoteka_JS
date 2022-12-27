@@ -5,11 +5,27 @@
 */
 .button__box {
   display: flex;
+  justify-content: center;
+  gap: 20px;
+  @include mq(tab) {
+    gap: 32px;
+  }
+  @include mq(desk) {
+    gap: 16px;
+  }
 }
 .watched_button {
   @extend %btn;
-  border-color: #000;
-  color: #000;
+  width: 130px;
+  background-color: transparent;
+  color: var(--cl-txt-wite);
+  @include mq(tab) {
+    width: 152px;
+  }
+  @include mq(desk) {
+    width: 147px;
+    height: 42px;
+  }
   &.active {
     background-color: var(--cl-accent);
     border-color: #fff;
@@ -19,8 +35,16 @@
 
 .queue_button {
   @extend %btn;
-  border-color: #000;
-  color: #000;
+  width: 130px;
+  background-color: transparent;
+  color: var(--cl-txt-wite);
+  @include mq(tab) {
+    width: 152px;
+  }
+  @include mq(desk) {
+    width: 147px;
+    height: 42px;
+  }
   &.active {
     background-color: var(--cl-accent);
     border-color: #fff;
