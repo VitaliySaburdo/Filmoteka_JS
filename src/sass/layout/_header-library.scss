@@ -1,3 +1,11 @@
+/**
+  |============================
+  | Header library
+  |============================
+*/
+.button__box {
+  display: flex;
+}
 .watched_button {
   @extend %btn;
   border-color: #000;
