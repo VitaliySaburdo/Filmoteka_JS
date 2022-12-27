@@ -13,9 +13,6 @@ export function libraryStorage(movieData) {
 
   const watchBtn = document.querySelector('.js-watched');
   const queueBtn = document.querySelector('.js-queue');
-  console.log(localStorage.getItem('watch'));
-  console.log(filmObject);
-  // console.log(getFromStorage('watch').includes(movieData));
 
   if (
     localStorage.getItem('watch') !== null &&
@@ -23,8 +20,15 @@ export function libraryStorage(movieData) {
   ) {
     watchBtn.textContent = 'REMOVE FROM WATCHED';
   }
+  if (
+    localStorage.getItem('queue') !== null &&
+    localStorage.getItem('queue').includes(filmObject)
+  ) {
+    queueBtn.textContent = 'REMOVE FROM QUEUE';
+  }
 
   watchBtn.addEventListener('click', onWatchBtn);
+  queueBtn.addEventListener('click', onQueueBtn);
 
   function onWatchBtn() {
     if (movieData) {
@@ -44,6 +48,23 @@ export function libraryStorage(movieData) {
     }
   }
 
+  function onQueueBtn() {
+    if (movieData) {
+      if (queueMovie.find(e => e.id === movieData.id)) {
+        queueBtn.classList.remove('button--accent-btn');
+        queueBtn.textContent = 'ADD TO QUEUE';
+        queueMovie = queueMovie.filter(e => e.id !== movieData.id);
+        if (cartItem) {
+          removeFromStorage('watch');
+        }
+      } else {
+        queueBtn.classList.add('button--accent-btn');
+        queueBtn.textContent = 'REMOVE FROM QUEUE';
+        queueMovie.push(movieData);
+      }
+      addToStorage('queue', queueMovie);
+    }
+  }
   function renderGalleryFilms(data) {
     const markup = data
       .map(
