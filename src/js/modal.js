@@ -9,7 +9,7 @@ const newData = new newsApiService();
 const cardContainer = document.querySelector('.modal-window');
 const card = document.querySelector('.gallery-list');
 const modal = document.querySelector('.modal-backdrop');
-
+let currentId = null;
 if (card) {
   card.addEventListener('click', onOpenModal);
 }
@@ -27,7 +27,6 @@ function onOpenModal(event) {
       .then(data => {
         renderModalContent(data);
         addModalMovieListeners();
-
         return data;
       })
       .then(data => libraryStorage(data))
