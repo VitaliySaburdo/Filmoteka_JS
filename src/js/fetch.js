@@ -31,7 +31,7 @@ export default class NewsApiService {
     }
   }
 
-  // Запрос детальной информации по id для модалки
+  // Запрос по поиску
   async getFilmOnSearch() {
     try {
       const url = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`;

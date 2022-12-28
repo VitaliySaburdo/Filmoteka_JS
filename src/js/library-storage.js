@@ -13,9 +13,6 @@ if (libraryEl) {
   queueButton.addEventListener('click', handleClickQueue);
 }
 
-let watchMovie = [];
-let queueMovie = [];
-
 export function libraryStorage(movieData) {
   const cartItem = document.querySelector(`[data-id="${movieData.id}"]`);
   const filmObject = JSON.stringify(movieData);
@@ -40,6 +37,7 @@ export function libraryStorage(movieData) {
   queueBtn.addEventListener('click', onQueueBtn);
 
   function onWatchBtn() {
+    let watchMovie = getFromStorage('watch') || [];
     if (movieData) {
       if (watchMovie.find(e => e.id === movieData.id)) {
         watchBtn.classList.remove('button--accent-btn');
@@ -58,13 +56,14 @@ export function libraryStorage(movieData) {
   }
 
   function onQueueBtn() {
+    let queueMovie = getFromStorage('queue') || [];
     if (movieData) {
       if (queueMovie.find(e => e.id === movieData.id)) {
         queueBtn.classList.remove('button--accent-btn');
         queueBtn.textContent = 'ADD TO QUEUE';
         queueMovie = queueMovie.filter(e => e.id !== movieData.id);
         if (cartItem) {
-          removeFromStorage('watch');
+          removeFromStorage('queue');
         }
       } else {
         queueBtn.classList.add('button--accent-btn');
