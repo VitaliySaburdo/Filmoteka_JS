@@ -41,7 +41,7 @@ export default class NewsApiService {
       console.log(error);
     }
   }
-  // Запрос детальной информации по id для модалки
+  // Запрос информации по жанрам
   async getGenres() {
     try {
       const url = `${BASE_URL}genre/movie/list?api_key=${API_KEY}`;

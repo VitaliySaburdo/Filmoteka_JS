@@ -25,6 +25,7 @@ export function libraryStorage(movieData) {
     localStorage.getItem('watch').includes(filmObject)
   ) {
     watchBtn.textContent = 'REMOVE FROM WATCHED';
+    watchBtn.classList.add('button--accent');
   }
   if (
     localStorage.getItem('queue') !== null &&
@@ -40,14 +41,14 @@ export function libraryStorage(movieData) {
     let watchMovie = getFromStorage('watch') || [];
     if (movieData) {
       if (watchMovie.find(e => e.id === movieData.id)) {
-        watchBtn.classList.remove('button--accent-btn');
+        watchBtn.classList.remove('button--accent');
         watchBtn.textContent = 'ADD TO WATCHED';
         watchMovie = watchMovie.filter(e => e.id !== movieData.id);
         if (cartItem) {
           removeFromStorage('watch');
         }
       } else {
-        watchBtn.classList.add('button--accent-btn');
+        watchBtn.classList.add('button--accent');
         watchBtn.textContent = 'REMOVE FROM WATCHED';
         watchMovie.push(movieData);
       }
@@ -59,14 +60,14 @@ export function libraryStorage(movieData) {
     let queueMovie = getFromStorage('queue') || [];
     if (movieData) {
       if (queueMovie.find(e => e.id === movieData.id)) {
-        queueBtn.classList.remove('button--accent-btn');
+        queueBtn.classList.remove('button--accent');
         queueBtn.textContent = 'ADD TO QUEUE';
         queueMovie = queueMovie.filter(e => e.id !== movieData.id);
         if (cartItem) {
           removeFromStorage('queue');
         }
       } else {
-        queueBtn.classList.add('button--accent-btn');
+        queueBtn.classList.add('button--accent');
         queueBtn.textContent = 'REMOVE FROM QUEUE';
         queueMovie.push(movieData);
       }
