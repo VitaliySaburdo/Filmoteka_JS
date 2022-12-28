@@ -5,8 +5,8 @@ import {
 } from './localStorage';
 
 const libraryEl = document.querySelector('.library__list');
-// const queueButton = document.querySelector('.queue_button');
-// const watchedButton = document.querySelector('.watched_button');
+const queueButton = document.querySelector('.queue_button');
+const watchedButton = document.querySelector('.watched_button');
 
 // if (libraryEl) {
 //   watchedButton.addEventListener('click', handleClickWatched);
