@@ -69,44 +69,45 @@ export function libraryStorage(movieData) {
       addToStorage('queue', queueMovie);
     }
   }
-  function clearFilmList() {
-    if (libraryEl) {
-      libraryEl.innerHTML = '';
-    }
-  }
+}
 
-  function renderSavedFilms(name) {
-    clearFilmList();
-    const storageMovies = getFromStorage(name);
-    console.log(storageMovies);
-    if (storageMovies) {
-      renderLibrary(storageMovies);
-    }
+function clearFilmList() {
+  if (libraryEl) {
+    libraryEl.innerHTML = '';
   }
+}
 
-  function renderLibrary(data) {
-    console.log(data);
-    const markup = data
-      .map(
-        ({
-          id,
-          poster_path,
-          title,
-          genres,
-          release_date,
-        }) => `<li class="gallery__item" data-id="${id}">
+function renderSavedFilms(name) {
+  clearFilmList();
+  const storageMovies = getFromStorage(name);
+  console.log(storageMovies);
+  if (storageMovies) {
+    renderLibrary(storageMovies);
+  }
+}
+
+function renderLibrary(data) {
+  console.log(data);
+  const markup = data
+    .map(
+      ({
+        id,
+        poster_path,
+        title,
+        genres,
+        release_date,
+      }) => `<li class="gallery__item" data-id="${id}">
         <img src="${renderImg(
           poster_path
         )}" alt="${title}" class="gallery_img" width="395" height="574" />
         <h2 class="gallery__title">${title}</h2>
         <p class="gallery__txt">${genres} | ${release_date.slice(0, 4)}
       </li>`
-      )
-      .join('');
+    )
+    .join('');
 
-    if (libraryEl) {
-      libraryEl.innerHTML = markup;
-    }
+  if (libraryEl) {
+    libraryEl.innerHTML = markup;
   }
 }
 
