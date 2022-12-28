@@ -70,7 +70,6 @@ const murkupMovie = ({
 };
 
 // Генерирование жанра
-
 function genresConverting(genres) {
   if (genres.length) {
     const genreArray = [];
