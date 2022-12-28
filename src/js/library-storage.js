@@ -32,6 +32,7 @@ export function libraryStorage(movieData) {
     localStorage.getItem('queue').includes(filmObject)
   ) {
     queueBtn.textContent = 'REMOVE FROM QUEUE';
+    watchBtn.classList.add('button--accent');
   }
 
   watchBtn.addEventListener('click', onWatchBtn);
@@ -48,8 +49,8 @@ export function libraryStorage(movieData) {
           removeFromStorage('watch');
         }
       } else {
-        watchBtn.classList.add('button--accent');
         watchBtn.textContent = 'REMOVE FROM WATCHED';
+        watchBtn.classList.add('button--accent');
         watchMovie.push(movieData);
       }
       addToStorage('watch', watchMovie);
@@ -67,21 +68,32 @@ export function libraryStorage(movieData) {
           removeFromStorage('queue');
         }
       } else {
-        queueBtn.classList.add('button--accent');
         queueBtn.textContent = 'REMOVE FROM QUEUE';
+        queueBtn.classList.add('button--accent');
         queueMovie.push(movieData);
       }
       addToStorage('queue', queueMovie);
     }
   }
 }
+
+handleClickWatched();
 function handleClickWatched() {
   renderSavedFilms('watch');
-  isWatchTabActive = true;
+  if (libraryEl) {
+    watchedButton.classList.add('btn__active');
+    queueButton.classList.remove('btn__active');
+  }
+
+  // isWatchTabActive = true;
 }
 function handleClickQueue() {
   renderSavedFilms('queue');
-  isWatchTabActive = false;
+  if (libraryEl) {
+    watchedButton.classList.remove('btn__active');
+    queueButton.classList.add('btn__active');
+  }
+  // isWatchTabActive = false;
 }
 
 function clearFilmList() {
@@ -89,18 +101,16 @@ function clearFilmList() {
     libraryEl.innerHTML = '';
   }
 }
-renderSavedFilms('watch');
+
 function renderSavedFilms(name) {
   clearFilmList();
   const storageMovies = getFromStorage(name);
-  console.log(storageMovies);
   if (storageMovies) {
     renderLibrary(storageMovies);
   }
 }
 // document.location.reload();
 function renderLibrary(data) {
-  console.log(data);
   const markup = data
     .map(
       ({
