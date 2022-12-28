@@ -8,10 +8,10 @@ const libraryEl = document.querySelector('.library__list');
 const queueButton = document.querySelector('.queue_button');
 const watchedButton = document.querySelector('.watched_button');
 
-// if (libraryEl) {
-//   watchedButton.addEventListener('click', handleClickWatched);
-//   queueButton.addEventListener('click', handleClickQueue);
-// }
+if (libraryEl) {
+  watchedButton.addEventListener('click', handleClickWatched);
+  queueButton.addEventListener('click', handleClickQueue);
+}
 
 let watchMovie = [];
 let queueMovie = [];
@@ -55,7 +55,6 @@ export function libraryStorage(movieData) {
       }
       addToStorage('watch', watchMovie);
     }
-    renderSavedFilms('watch');
   }
 
   function onQueueBtn() {
@@ -76,6 +75,14 @@ export function libraryStorage(movieData) {
     }
   }
 }
+function handleClickWatched() {
+  renderSavedFilms('watch');
+  isWatchTabActive = true;
+}
+function handleClickQueue() {
+  renderSavedFilms('queue');
+  isWatchTabActive = false;
+}
 
 function clearFilmList() {
   if (libraryEl) {
@@ -91,7 +98,7 @@ function renderSavedFilms(name) {
     renderLibrary(storageMovies);
   }
 }
-
+// document.location.reload();
 function renderLibrary(data) {
   console.log(data);
   const markup = data
