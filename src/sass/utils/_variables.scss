@@ -1,5 +1,6 @@
 :root {
   /* colors */
+  --cl-body: #ffffff;
   --cl-white: #ffffff;
   --cl-ivory: #fffff0;
   --cl-almost-white: #fefefe;
@@ -8,6 +9,7 @@
   --cl-txt-wite: #ffffff;
   --cl-secondary: #f7f7f7;
   --cl-accent: #ff6b08;
+  --bgc-modal: #ffffff;
 
   /* fonts */
   --main-font: 'Roboto', sans-serif;
@@ -18,12 +20,13 @@
 
 .dark-theme {
   /* colors */
-  --cl-white: black;
+  --cl-body: #333333;
   --cl-almost-white: #222222;
   --cl-black: white;
-  --cl-txt: #8c8c8c;
+  --cl-txt: #aaa9a9;
   --cl-secondary: #1b1b1e;
   --cl-accent: #ff6b08;
+  --bgc-modal: #757575;
 
   /* fonts */
   --main-font: 'Roboto', sans-serif;
