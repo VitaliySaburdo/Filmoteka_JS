@@ -4,8 +4,14 @@ import {
   removeFromStorage,
 } from './localStorage';
 
-export const libraryEl = document.querySelector('.library__list');
-console.log(libraryEl);
+const libraryEl = document.querySelector('.library__list');
+const queueButton = document.querySelector('.queue_button');
+const watchedButton = document.querySelector('.watched_button');
+
+// if (libraryEl) {
+//   watchedButton.addEventListener('click', handleClickWatched);
+//   queueButton.addEventListener('click', handleClickQueue);
+// }
 
 let watchMovie = [];
 let queueMovie = [];
@@ -76,7 +82,7 @@ function clearFilmList() {
     libraryEl.innerHTML = '';
   }
 }
-
+renderSavedFilms('watch');
 function renderSavedFilms(name) {
   clearFilmList();
   const storageMovies = getFromStorage(name);
@@ -101,7 +107,9 @@ function renderLibrary(data) {
           poster_path
         )}" alt="${title}" class="gallery_img" width="395" height="574" />
         <h2 class="gallery__title">${title}</h2>
-        <p class="gallery__txt">${genres} | ${release_date.slice(0, 4)}
+        <p class="gallery__txt">${genresConverting(
+          genres
+        )} | ${release_date.slice(0, 4)}
       </li>`
     )
     .join('');
@@ -116,4 +124,16 @@ function renderImg(poster_path) {
     return `https://image.tmdb.org/t/p/w500${poster_path}`;
   }
   return `https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png?20170513175923`;
+}
+
+function genresConverting(genres) {
+  if (genres.length) {
+    const genreArray = [];
+    genres.map(genre => {
+      genreArray.push(genre.name);
+    });
+
+    return genreArray.join(', ');
+  }
+  return 'N/A';
 }
