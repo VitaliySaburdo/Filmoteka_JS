@@ -19,3 +19,21 @@
   background-color: var(--cl-accent);
   color: var(--cl-white);
 }
+
+.remove_button {
+  @extend %btn;
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  left: 25%;
+  bottom: 43;
+  background-color: red;
+  color: var(--cl-white);
+  border: none;
+
+  @include mq('desk') {
+    height: 40px;
+    left: 32%;
+    bottom: 65;
+  }
+}

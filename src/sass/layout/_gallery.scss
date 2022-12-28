@@ -28,6 +28,7 @@
   }
 }
 .gallery__item {
+  position: relative;
   width: 280px;
   height: 440px;
   transition: 0.5s linear;

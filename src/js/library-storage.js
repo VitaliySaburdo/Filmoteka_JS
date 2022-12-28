@@ -127,7 +127,8 @@ function renderLibrary(data) {
         <p class="gallery__txt">${genresConverting(
           genres
         )} | ${release_date.slice(0, 4)}
-      </li>`
+        <button class="remove_button" type="button">Remove</button>
+        </li>`
     )
     .join('');
 
