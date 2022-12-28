@@ -84,16 +84,39 @@ function handleClickWatched() {
     watchedButton.classList.add('btn__active');
     queueButton.classList.remove('btn__active');
   }
-
-  // isWatchTabActive = true;
 }
+
+if (getFromStorage('watch').length && libraryEl) {
+  const removeButton = document.querySelector('.remove_button');
+  removeButton.addEventListener('click', onRemoveButton);
+}
+
+function onRemoveButton(e) {
+  if (e.target.nodeName === 'BUTTON') {
+    removeFromStorage(e);
+    const filmId = e.target.dataset.id;
+    const storageKey = e.target.dataset.btn;
+    console.log(storageKey);
+    removeFilmFromLocalrStorage(filmId, storageKey);
+    document.location.reload();
+  }
+  removeButton.removeEventListener('click', onRemoveButton);
+}
+
+function removeFilmFromLocalrStorage(id, storageKey) {
+  const localStData = JSON.parse(localStorage.getItem(storageKey)) || false;
+  if (localStData) {
+    const newArr = localStData.filter(film => film.id !== +id);
+    localStorage.setItem(storageKey, JSON.stringify(newArr));
+  }
+}
+
 function handleClickQueue() {
   renderSavedFilms('queue');
   if (libraryEl) {
     watchedButton.classList.remove('btn__active');
     queueButton.classList.add('btn__active');
   }
-  // isWatchTabActive = false;
 }
 
 function clearFilmList() {
@@ -106,11 +129,11 @@ function renderSavedFilms(name) {
   clearFilmList();
   const storageMovies = getFromStorage(name);
   if (storageMovies) {
-    renderLibrary(storageMovies);
+    renderLibrary(storageMovies, name);
   }
 }
 // document.location.reload();
-function renderLibrary(data) {
+function renderLibrary(data, name) {
   const markup = data
     .map(
       ({
@@ -127,7 +150,10 @@ function renderLibrary(data) {
         <p class="gallery__txt">${genresConverting(
           genres
         )} | ${release_date.slice(0, 4)}
-        <button class="remove_button" type="button">Remove</button>
+        <button class="remove_button" data-action="remove"
+        data-id="${id}" data-btn="${name}" type="button">
+        Remove
+        </button>
         </li>`
     )
     .join('');

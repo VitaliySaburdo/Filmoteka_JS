@@ -27,9 +27,16 @@
   height: 30px;
   left: 25%;
   bottom: 43;
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.507);
   color: var(--cl-white);
   border: none;
+  transition-property: background-color, color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: red;
+  }
 
   @include mq('desk') {
     height: 40px;
