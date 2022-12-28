@@ -55,5 +55,3 @@ function changeGenre(genre_ids) {
   }
   return genrArrey.join(', ');
 }
-
-export { markup };

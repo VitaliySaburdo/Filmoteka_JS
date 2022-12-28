@@ -3,7 +3,6 @@ import {
   getFromStorage,
   removeFromStorage,
 } from './localStorage';
-import { markup } from './murkupGallery';
 
 const libraryEl = document.querySelector('.library__list');
 // const queueButton = document.querySelector('.queue_button');
