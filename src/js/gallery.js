@@ -1,4 +1,5 @@
 import newsApiService from './fetch';
+import { markup } from './murkupGallery';
 
 const imageGallaryRef = document.querySelector('.gallery-list');
 
@@ -15,5 +16,5 @@ ApiService.fetchTrendingMovie().then(data => {
 });
 
 function renderGalleryFilms(data) {
-  imageGallaryRef.innerHTML = murkup(data);
+  imageGallaryRef.innerHTML = markup(data);
 }
