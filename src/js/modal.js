@@ -1,6 +1,6 @@
 import newsApiService from './fetch';
 import { murkupMovie } from './markupModal';
-// import { addToStorage } from './localStorage';
+import { libraryEl } from './library-storage';
 import { scrollController } from './scroll';
 import { libraryStorage } from './library-storage.js';
 
@@ -12,6 +12,9 @@ const modal = document.querySelector('.modal-backdrop');
 
 if (card) {
   card.addEventListener('click', onOpenModal);
+}
+if (libraryEl) {
+  libraryEl.addEventListener('click', onOpenModal);
 }
 
 function onOpenModal(event) {
