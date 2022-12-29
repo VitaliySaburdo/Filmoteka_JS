@@ -1,4 +1,5 @@
 import newsApiService from './fetch';
+import { addToStorage, getFromStorage } from './localStorage';
 
 const imageGallaryRef = document.querySelector('.gallery-list');
 
@@ -6,18 +7,8 @@ const ApiService = new newsApiService();
 
 ApiService.getGenres().then(({ genres }) => {
   //Добавление списка жанров в localStorage
-  saveLs('genresList', genres);
-  JSON.parse(localStorage.getItem('genresList'));
+  addToStorage('genresList', genres);
 });
-
-const saveLs = (key, value) => {
-  try {
-    const serializedState = JSON.stringify(value);
-    localStorage.setItem(key, serializedState);
-  } catch (error) {
-    console.error('Set state error: ', error.message);
-  }
-};
 
 ApiService.fetchTrendingMovie().then(data => {
   renderGalleryFilms(data.results);
@@ -72,7 +63,7 @@ function checkTitle(original_title) {
 }
 
 function changeGenre(genre_ids) {
-  const genresInfo = JSON.parse(localStorage.getItem('genresList'));
+  const genresInfo = getFromStorage('genresList');
 
   const genrArrey = [];
   for (const genre_id of genre_ids) {
