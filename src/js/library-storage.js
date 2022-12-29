@@ -47,6 +47,7 @@ export function libraryStorage(movieData) {
         watchMovie = watchMovie.filter(e => e.id !== movieData.id);
         if (cartItem) {
           removeFromStorage('watch');
+          // libraryEl.innerHTML = '';
           renderLibrary(watchMovie);
         }
       } else {
