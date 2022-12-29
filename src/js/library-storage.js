@@ -47,7 +47,6 @@ export function libraryStorage(movieData) {
         watchMovie = watchMovie.filter(e => e.id !== movieData.id);
         if (cartItem) {
           removeFromStorage('watch');
-          libraryEl.innerHTML = '';
           renderLibrary(watchMovie);
         }
       } else {
@@ -68,7 +67,6 @@ export function libraryStorage(movieData) {
         queueMovie = queueMovie.filter(e => e.id !== movieData.id);
         if (cartItem) {
           removeFromStorage('queue');
-          libraryEl.innerHTML = '';
           renderLibrary(queueMovie);
         }
       } else {
@@ -80,6 +78,25 @@ export function libraryStorage(movieData) {
     }
   }
 }
+// const removeButton = document.querySelector('.remove_button');
+// console.log(removeButton);
+
+// if (removeButton) {
+//   removeButton.addEventListener('click', onRemoveButton);
+// }
+
+// function onRemoveButton(e) {
+//   if (e.target.nodeName === 'BUTTON') {
+//     removeFromStorage(e);
+//     const filmId = e.target.dataset.id;
+//     const storageKey = e.target.dataset.btn;
+//     console.log(storageKey);
+//     removeFilmFromLocalrStorage(filmId, storageKey);
+//     libraryEl.innerHTML = '';
+//     renderLibrary(movieData);
+//   }
+//   removeButton.removeEventListener('click', onRemoveButton);
+// }
 
 handleClickWatched();
 function handleClickWatched() {
@@ -112,7 +129,7 @@ function renderSavedFilms(name) {
   }
 }
 // document.location.reload();
-function renderLibrary(data) {
+function renderLibrary(data, name) {
   const markup = data
     .map(
       ({
@@ -129,6 +146,10 @@ function renderLibrary(data) {
         <p class="gallery__txt">${genresConverting(
           genres
         )} | ${release_date.slice(0, 4)}
+                <button class="remove_button" data-action="remove"
+        data-id="${id}" data-btn="${name}" type="button">
+        Remove
+        </button>
         </li>`
     )
     .join('');

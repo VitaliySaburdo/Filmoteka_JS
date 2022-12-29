@@ -1,8 +1,6 @@
 const toggleTheme = document.querySelector('.toggle');
-console.log(toggleTheme);
 
 const toggleDarkOrLight = document.querySelector('.theme__dark');
-console.log(toggleDarkOrLight);
 
 toggleTheme.addEventListener('click', onSwitchBtn);
 if (localStorage.getItem('theme') === 'dark') {
