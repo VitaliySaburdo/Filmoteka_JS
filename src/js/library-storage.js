@@ -47,6 +47,8 @@ export function libraryStorage(movieData) {
         watchMovie = watchMovie.filter(e => e.id !== movieData.id);
         if (cartItem) {
           removeFromStorage('watch');
+          libraryEl.innerHTML = '';
+          renderLibrary(watchMovie);
         }
       } else {
         watchBtn.textContent = 'REMOVE FROM WATCHED';
@@ -66,6 +68,8 @@ export function libraryStorage(movieData) {
         queueMovie = queueMovie.filter(e => e.id !== movieData.id);
         if (cartItem) {
           removeFromStorage('queue');
+          libraryEl.innerHTML = '';
+          renderLibrary(queueMovie);
         }
       } else {
         queueBtn.textContent = 'REMOVE FROM QUEUE';
@@ -108,7 +112,7 @@ function renderSavedFilms(name) {
   }
 }
 // document.location.reload();
-function renderLibrary(data, name) {
+function renderLibrary(data) {
   const markup = data
     .map(
       ({
