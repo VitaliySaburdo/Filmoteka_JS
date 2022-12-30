@@ -129,7 +129,7 @@ function renderSavedFilms(name) {
     renderLibrary(storageMovies, name);
   }
 }
-// document.location.reload();
+
 function renderLibrary(data, name) {
   const markup = data
     .map(
