@@ -25,5 +25,8 @@ function removeFromStorage(key) {
     console.error(error);
   }
 }
+function moviesDataUpdate(data) {
+  localStorage.setItem('moviesData', JSON.stringify(data.results));
+}
 
-export { addToStorage, getFromStorage, removeFromStorage };
+export { addToStorage, getFromStorage, removeFromStorage, moviesDataUpdate };
