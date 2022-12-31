@@ -193,7 +193,6 @@ function onNextBtnClick() {
     });
     galleryEl.innerHTML = '';
     renderGalleryFilms(data.results);
-    console.log(data.results);
     moviesDataUpdate(data);
   });
   addToStorage('page-pg', page);
