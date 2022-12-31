@@ -8,6 +8,8 @@ export const libraryEl = document.querySelector('.library__list');
 const queueButton = document.querySelector('.queue_button');
 const watchedButton = document.querySelector('.watched_button');
 
+let queueMovie = getFromStorage('queue') || [];
+let watchMovie = getFromStorage('watch') || [];
 if (libraryEl) {
   watchedButton.addEventListener('click', handleClickWatched);
   queueButton.addEventListener('click', handleClickQueue);
@@ -39,7 +41,6 @@ export function libraryStorage(movieData) {
   queueBtn.addEventListener('click', onQueueBtn);
 
   function onWatchBtn() {
-    let watchMovie = getFromStorage('watch') || [];
     if (movieData) {
       if (watchMovie.find(e => e.id === movieData.id)) {
         watchBtn.classList.remove('button--accent');
@@ -60,7 +61,6 @@ export function libraryStorage(movieData) {
   }
 
   function onQueueBtn() {
-    let queueMovie = getFromStorage('queue') || [];
     if (movieData) {
       if (queueMovie.find(e => e.id === movieData.id)) {
         queueBtn.classList.remove('button--accent');
@@ -79,8 +79,13 @@ export function libraryStorage(movieData) {
     }
   }
 }
-// const removeButton = document.querySelector('.remove_button');
-// console.log(removeButton);
+// if (libraryEl) {
+//   const removeButton = document.querySelector('.remove_button');
+//   console.log(removeButton);
+//   if (removeButton !== null) {
+//     removeButton.addEventListener('click', () => console.log('click'));
+//   }
+// }
 
 // if (removeButton) {
 //   removeButton.addEventListener('click', onRemoveButton);
@@ -178,3 +183,30 @@ function genresConverting(genres) {
   }
   return 'N/A';
 }
+// if (libraryEl) {
+//   const removeButton = document.querySelector('.remove_button');
+//   console.log(removeButton);
+//   if (removeButton !== null) {
+//     removeButton.addEventListener('click', onRemoveButton);
+//   }
+//   function onRemoveButton(e) {
+//     if (e.target.nodeName === 'BUTTON') {
+//       removeFromStorage(e);
+//       const filmId = e.target.dataset.id;
+//       const storageKey = e.target.dataset.btn;
+//       console.log(storageKey);
+//       removeFilmFromLocalrStorage(filmId, storageKey);
+//       // libraryEl.innerHTML = '';
+//       renderLibrary(movieData);
+//     }
+//     removeButton.removeEventListener('click', onRemoveButton);
+//   }
+//   function removeFilmFromLocalrStorage(id, localeStorageKey) {
+//     const localStData =
+//       JSON.parse(localStorage.getItem(localeStorageKey)) || false;
+//     if (localStData) {
+//       const newArr = localStData.filter(film => film.id !== +id);
+//       localStorage.setItem(localeStorageKey, JSON.stringify(newArr));
+//     }
+//   }
+// }
