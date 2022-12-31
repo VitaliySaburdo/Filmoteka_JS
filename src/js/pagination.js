@@ -1,15 +1,8 @@
 import newsApiService from './fetch';
-import {
-  addToStorage,
-  getFromStorage,
-  removeFromStorage,
-  moviesDataUpdate,
-} from './localStorage';
+import { addToStorage, getFromStorage, moviesDataUpdate } from './localStorage';
 import { renderGalleryFilms } from './gallery';
 
 const ApiService = new newsApiService();
-console.log(ApiService.page);
-console.log(ApiService.data);
 
 // const galleryEl = document.querySelector('.gallery-list');
 const paginationBar = document.querySelector('.pagination-btns');
