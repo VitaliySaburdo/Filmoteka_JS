@@ -8,11 +8,20 @@ import {
 import { renderGalleryFilms } from './gallery';
 
 const ApiService = new newsApiService();
+console.log(ApiService.page);
+console.log(ApiService.data);
 
-const galleryEl = document.querySelector('.gallery-list');
+// const galleryEl = document.querySelector('.gallery-list');
 const paginationBar = document.querySelector('.pagination-btns');
 const prevBtn = document.querySelector('.page-btn.prev');
 const nextBtn = document.querySelector('.page-btn.next');
+
+if (!getFromStorage('total-pages')) {
+  addToStorage('total-pages', 1000);
+}
+if (!getFromStorage('page-pg')) {
+  addToStorage('page-pg', 1);
+}
 
 let page = getFromStorage('page-pg');
 let amountOfPages = getFromStorage('total-pages');
@@ -30,9 +39,17 @@ if (nextBtn) {
 if (location.pathname.split('/').slice(-1) == 'library.html') {
   amountOfPages = 1000;
   page = 1;
-
   addToStorage('page-pg', page);
+  addToStorage('total-pages', amountOfPages);
+}
 
+if (location.pathname.split('/').slice(-1) == 'library.html') {
+  ApiService.fetchTrendingMovie().then(data => {
+    renderGalleryFilms(data.results);
+    moviesDataUpdate(data);
+    addToStorage('total-pages', amountOfPages);
+  });
+  addToStorage('page-pg', page);
   if (amountOfPages > 1 && amountOfPages < 6) {
     paginationBar.children[page - 1].classList.remove('active');
     paginationBar.children[page - 1].classList.add('active');
@@ -174,12 +191,14 @@ function onNextBtnClick() {
       paginationBar.children[6].classList.add('active');
     }
   }
-  getSearchForm(page, query, genre, year, sort).then(data => {
+
+  ApiService.fetchTrendingMovie().then(data => {
     window.scrollTo({
       top: 100,
       behavior: 'smooth',
     });
-    renderMarkup.renderMarkup(data);
+    renderGalleryFilms(data.results);
+    console.log(data.results);
     moviesDataUpdate(data);
   });
   addToStorage('page-pg', page);
@@ -347,13 +366,10 @@ function renderPagination(e) {
   } else {
     prevBtn.classList.remove('is-hidden');
   }
-
-  window.scrollTo({
-    top: 100,
-    behavior: 'smooth',
+  ApiService.fetchTrendingMovie().then(data => {
+    renderGalleryFilms(data.results);
+    moviesDataUpdate(data);
   });
-  renderGalleryFilms(data);
-  moviesDataUpdate(data);
 
   addToStorage('page-pg', page);
 }
