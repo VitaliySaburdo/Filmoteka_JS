@@ -4,7 +4,7 @@ import { renderGalleryFilms } from './gallery';
 
 const ApiService = new newsApiService();
 
-// const galleryEl = document.querySelector('.gallery-list');
+const galleryEl = document.querySelector('.gallery-list');
 const paginationBar = document.querySelector('.pagination-btns');
 const prevBtn = document.querySelector('.page-btn.prev');
 const nextBtn = document.querySelector('.page-btn.next');
@@ -37,7 +37,8 @@ if (location.pathname.split('/').slice(-1) == 'library.html') {
 }
 
 if (location.pathname.split('/').slice(-1) == 'library.html') {
-  ApiService.fetchTrendingMovie().then(data => {
+  ApiService.fetchPaginationMovie(page).then(data => {
+    galleryEl.innerHTML = '';
     renderGalleryFilms(data.results);
     moviesDataUpdate(data);
     addToStorage('total-pages', amountOfPages);
@@ -185,11 +186,12 @@ function onNextBtnClick() {
     }
   }
 
-  ApiService.fetchTrendingMovie().then(data => {
+  ApiService.fetchPaginationMovie(page).then(data => {
     window.scrollTo({
       top: 100,
       behavior: 'smooth',
     });
+    galleryEl.innerHTML = '';
     renderGalleryFilms(data.results);
     console.log(data.results);
     moviesDataUpdate(data);
@@ -244,12 +246,14 @@ function onPrevBtnClick() {
     }
   }
 
-  getSearchForm(page, query, genre, year, sort).then(data => {
+  ApiService.fetchPaginationMovie(page).then(data => {
     window.scrollTo({
       top: 100,
       behavior: 'smooth',
     });
-    renderMarkup.renderMarkup(data);
+    galleryEl.innerHTML = '';
+    renderGalleryFilms(data.results);
+    console.log(data.results);
     moviesDataUpdate(data);
   });
   addToStorage('page-pg', page);
@@ -359,10 +363,14 @@ function renderPagination(e) {
   } else {
     prevBtn.classList.remove('is-hidden');
   }
-  ApiService.fetchTrendingMovie().then(data => {
+  ApiService.fetchPaginationMovie(page).then(data => {
+    window.scrollTo({
+      top: 100,
+      behavior: 'smooth',
+    });
+    galleryEl.innerHTML = '';
     renderGalleryFilms(data.results);
     moviesDataUpdate(data);
   });
-
   addToStorage('page-pg', page);
 }

@@ -20,6 +20,17 @@ export default class NewsApiService {
     }
   }
 
+  // Запрос для пагинации
+  async fetchPaginationMovie(page) {
+    try {
+      const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   // Запрос детальной информации по id для модалки
   async getFilmDetails(id) {
     try {
