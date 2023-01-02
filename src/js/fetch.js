@@ -45,7 +45,14 @@ export default class NewsApiService {
   // Запрос по поиску
   async getFilmOnSearch() {
     try {
-      const url = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`;
+      const searchParams = new URLSearchParams({
+        api_key: API_KEY,
+        query: this.searchQuery,
+        language: 'en-US',
+        page: this.page,
+        include_adult: false,
+      });
+      const url = `${BASE_URL}search/movie?${searchParams}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {

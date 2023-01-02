@@ -14,7 +14,7 @@ ApiService.fetchTrendingMovie().then(data => {
   renderGalleryFilms(data.results);
 });
 
-export function renderGalleryFilms(data) {
+function renderGalleryFilms(data) {
   const markup = data
     .map(
       ({
@@ -78,3 +78,5 @@ function changeGenre(genre_ids) {
   }
   return genrArrey.join(', ');
 }
+
+export { renderGalleryFilms };

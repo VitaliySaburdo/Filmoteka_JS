@@ -183,30 +183,31 @@ function genresConverting(genres) {
   }
   return 'N/A';
 }
-// if (libraryEl) {
-//   const removeButton = document.querySelector('.remove_button');
-//   console.log(removeButton);
-//   if (removeButton !== null) {
-//     removeButton.addEventListener('click', onRemoveButton);
-//   }
-//   function onRemoveButton(e) {
-//     if (e.target.nodeName === 'BUTTON') {
-//       removeFromStorage(e);
-//       const filmId = e.target.dataset.id;
-//       const storageKey = e.target.dataset.btn;
-//       console.log(storageKey);
-//       removeFilmFromLocalrStorage(filmId, storageKey);
-//       // libraryEl.innerHTML = '';
-//       renderLibrary(movieData);
-//     }
-//     removeButton.removeEventListener('click', onRemoveButton);
-//   }
-//   function removeFilmFromLocalrStorage(id, localeStorageKey) {
-//     const localStData =
-//       JSON.parse(localStorage.getItem(localeStorageKey)) || false;
-//     if (localStData) {
-//       const newArr = localStData.filter(film => film.id !== +id);
-//       localStorage.setItem(localeStorageKey, JSON.stringify(newArr));
-//     }
-//   }
-// }
+if (libraryEl) {
+  const removeButton = document.querySelectorAll('.remove_button');
+  console.log(removeButton);
+  if (removeButton !== null) {
+    removeButton.forEach(el => el.addEventListener('click', onRemoveButton));
+  }
+  function onRemoveButton(e) {
+    if (e.target.nodeName === 'BUTTON') {
+      console.log(e.target.nodeName);
+      removeFromStorage(e);
+      const filmId = e.target.dataset.id;
+      const storageKey = e.target.dataset.btn;
+      console.log(storageKey);
+      removeFilmFromLocalrStorage(filmId, storageKey);
+      // libraryEl.innerHTML = renderLibrary(watchMovie);
+      renderLibrary(watchMovie);
+    }
+    removeButton.forEach(el => el.addEventListener('click', onRemoveButton));
+  }
+  function removeFilmFromLocalrStorage(id, localeStorageKey) {
+    const localStData =
+      JSON.parse(localStorage.getItem(localeStorageKey)) || false;
+    if (localStData) {
+      const newArr = localStData.filter(film => film.id !== +id);
+      localStorage.setItem(localeStorageKey, JSON.stringify(newArr));
+    }
+  }
+}
