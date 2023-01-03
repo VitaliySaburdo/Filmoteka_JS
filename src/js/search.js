@@ -9,9 +9,9 @@ searchForm.addEventListener('submit', onSearch);
 
 function onSearch(e) {
   e.preventDefault();
-  NewApiService.query = e.currentTarget.elements.searchQuery.value.trim();
-  console.log(NewApiService.query);
-  NewApiService.getFilmOnSearch()
+  query = e.currentTarget.elements.searchQuery.value.trim();
+  console.log(query);
+  NewApiService.getFilmOnSearch(query)
     .then(data => {
       cardsContainer.innerHTML = '';
       renderGalleryFilms(data.results);
