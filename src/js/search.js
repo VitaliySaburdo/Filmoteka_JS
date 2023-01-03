@@ -1,5 +1,5 @@
 import NewsApiService from './fetch';
-// import { renderGalleryFilms } from './gallery';
+import { renderGalleryFilms } from './gallery';
 
 const NewApiService = new NewsApiService();
 const searchForm = document.querySelector('#header-form');
@@ -12,6 +12,9 @@ function onSearch(e) {
   NewApiService.query = e.currentTarget.elements.searchQuery.value.trim();
   console.log(NewApiService.query);
   NewApiService.getFilmOnSearch()
-    .then(data => console.log(data))
+    .then(data => {
+      cardsContainer.innerHTML = '';
+      renderGalleryFilms(data.results);
+    })
     .catch(err => console.log(err));
 }
