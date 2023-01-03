@@ -29,19 +29,17 @@ if (nextBtn) {
   paginationBar.addEventListener('click', onPageClick);
 }
 
-if (location.pathname.split('/').slice(-1) == 'library.html') {
+if (galleryEl) {
   amountOfPages = 1000;
   page = 1;
   addToStorage('page-pg', page);
   addToStorage('total-pages', amountOfPages);
-}
 
-if (location.pathname.split('/').slice(-1) == 'library.html') {
   ApiService.fetchPaginationMovie(page).then(data => {
     galleryEl.innerHTML = '';
     renderGalleryFilms(data.results);
     moviesDataUpdate(data);
-    addToStorage('total-pages', amountOfPages);
+    console.log(addToStorage('total-pages', amountOfPages));
   });
   addToStorage('page-pg', page);
   if (amountOfPages > 1 && amountOfPages < 6) {

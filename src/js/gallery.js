@@ -37,46 +37,46 @@ function renderGalleryFilms(data) {
     .join('');
 
   imageGallaryRef.insertAdjacentHTML('beforeend', markup);
-}
 
-function renderImg(poster_path) {
-  if (poster_path) {
-    return `https://image.tmdb.org/t/p/w500${poster_path}`;
+  function renderImg(poster_path) {
+    if (poster_path) {
+      return `https://image.tmdb.org/t/p/w500${poster_path}`;
+    }
+    return `https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png?20170513175923`;
   }
-  return `https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png?20170513175923`;
-}
 
-function checkDate(release_date) {
-  if (release_date) {
-    return release_date.split('-')[0];
+  function checkDate(release_date) {
+    if (release_date) {
+      return release_date.split('-')[0];
+    }
+    return '';
   }
-  return '';
-}
 
-function checkTitle(original_title) {
-  const arr = original_title.split('');
+  function checkTitle(original_title) {
+    const arr = original_title.split('');
 
-  if (arr.length >= 33) {
-    return arr.slice(0, 33).join('') + '...';
+    if (arr.length >= 33) {
+      return arr.slice(0, 33).join('') + '...';
+    }
+    return original_title;
   }
-  return original_title;
-}
 
-function changeGenre(genre_ids) {
-  const genresInfo = getFromStorage('genresList');
+  function changeGenre(genre_ids) {
+    const genresInfo = getFromStorage('genresList');
 
-  const genrArrey = [];
-  for (const genre_id of genre_ids) {
-    for (const genrInfo of genresInfo) {
-      if (genrInfo.id === genre_id) {
-        genrArrey.push(genrInfo.name);
+    const genrArrey = [];
+    for (const genre_id of genre_ids) {
+      for (const genrInfo of genresInfo) {
+        if (genrInfo.id === genre_id) {
+          genrArrey.push(genrInfo.name);
+        }
       }
     }
+    if (genrArrey.length > 2) {
+      return genrArrey.slice(0, 2).join(', ') + ', Other';
+    }
+    return genrArrey.join(', ');
   }
-  if (genrArrey.length > 2) {
-    return genrArrey.slice(0, 2).join(', ') + ', Other';
-  }
-  return genrArrey.join(', ');
 }
 
 export { renderGalleryFilms };
