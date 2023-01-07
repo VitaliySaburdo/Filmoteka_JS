@@ -39,7 +39,6 @@ if (galleryEl) {
     galleryEl.innerHTML = '';
     renderGalleryFilms(data.results);
     moviesDataUpdate(data);
-    console.log(addToStorage('total-pages', amountOfPages));
   });
   addToStorage('page-pg', page);
   if (amountOfPages > 1 && amountOfPages < 6) {
@@ -250,7 +249,7 @@ function onPrevBtnClick() {
     });
     galleryEl.innerHTML = '';
     renderGalleryFilms(data.results);
-    console.log(data.results);
+
     moviesDataUpdate(data);
   });
   addToStorage('page-pg', page);

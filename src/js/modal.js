@@ -6,6 +6,8 @@ import { libraryStorage } from './library-storage.js';
 
 const newData = new newsApiService();
 
+const postsData = newData.fetchTrendingMovie();
+console.log(postsData);
 const cardContainer = document.querySelector('.modal-window');
 const card = document.querySelector('.gallery-list');
 const modal = document.querySelector('.modal-backdrop');

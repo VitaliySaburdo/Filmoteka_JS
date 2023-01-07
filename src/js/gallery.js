@@ -15,6 +15,7 @@ ApiService.fetchTrendingMovie().then(data => {
 });
 
 function renderGalleryFilms(data) {
+  console.log(data);
   const markup = data
     .map(
       ({
