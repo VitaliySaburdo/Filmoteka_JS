@@ -41,7 +41,7 @@
   }
   @include mq(desk) {
     width: 806px;
-    height: 558px;
+    height: 650px;
     padding: 40px 12px 40px 12px;
   }
 }
@@ -86,7 +86,7 @@
   }
   @include mq('desk') {
     width: 375px;
-    height: 478px;
+    height: 570px;
     margin-right: 16px;
   }
 }
@@ -101,7 +101,7 @@
   }
   @include mq('desk') {
     width: 375px;
-    height: 478px;
+    height: 570px;
     border-radius: 5px;
   }
 }
