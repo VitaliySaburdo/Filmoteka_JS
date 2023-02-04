@@ -5,17 +5,16 @@ const NewApiService = new NewsApiService();
 const searchForm = document.querySelector('#header-form');
 const cardsContainer = document.querySelector('.gallery-list');
 
-searchForm.addEventListener('submit', onSearch);
+searchForm.addEventListener('submit', onSubmit);
 
 let currentPage = 1;
 let amountOfPages = 1;
 let query = '';
 let dataArray = [];
 
-async function onSearch(e) {
+async function onSubmit(e) {
   e.preventDefault();
   query = e.currentTarget.elements.searchQuery.value.trim();
-
   try {
     const { results, page, total_pages } = await NewApiService.getFilmOnSearch(
       query

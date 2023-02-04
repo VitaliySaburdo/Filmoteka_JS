@@ -59,10 +59,10 @@ const murkupMovie = ({
   <h3 class="modal__subtitle lng-about">ABOUT</h3>
   <p class="modal__desc">${overview}</p>
   <div class="modal__box">
-    <button type="button" class="modal__btn--left js-watched">
+    <button name=watched type="button" class="modal__btn--left js-watched">
       add to Watched
     </button>
-    <button type="button" class="modal__btn--right js-queue">
+    <button name=queue type="button" class="modal__btn--right js-queue">
       add to queue
     </button>
   </div>
