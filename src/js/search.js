@@ -6,7 +6,8 @@ const searchForm = document.querySelector('#header-form');
 const cardsContainer = document.querySelector('.gallery-list');
 
 searchForm.addEventListener('submit', onSearch);
-let Page = 1;
+
+let currentPage = 1;
 let amountOfPages = 1;
 let query = '';
 let dataArray = [];
@@ -19,7 +20,7 @@ async function onSearch(e) {
     const { results, page, total_pages } = await NewApiService.getFilmOnSearch(
       query
     );
-    Page = page;
+    currentPage = page;
     amountOfPages = total_pages;
     dataArray = results;
   } catch (error) {
