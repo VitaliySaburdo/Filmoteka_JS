@@ -48,6 +48,7 @@ export default class NewsApiService {
     const response = await axios.get(url);
     return response.data;
   }
+
   // Запрос информации по жанрам
   async getGenres() {
     try {
