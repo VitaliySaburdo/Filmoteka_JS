@@ -6,7 +6,6 @@ const imageGallaryRef = document.querySelector('.gallery-list');
 const ApiService = new newsApiService();
 
 ApiService.getGenres().then(({ genres }) => {
-  //Добавление списка жанров в localStorage
   addToStorage('genresList', genres);
 });
 
@@ -26,8 +25,8 @@ function renderGalleryFilms(data) {
         release_date,
       }) => `<li class="gallery__item" data-id="${id}">
         <img src="${renderImg(
-          poster_path
-        )}" alt="${title}" class="gallery_img" width="395" height="574" />
+        poster_path
+      )}" alt="${title}" class="gallery_img" width="395" height="574" />
         <h2 class="gallery__title">${checkTitle(original_title)}</h2>
         <p class="gallery__txt">${changeGenre(genre_ids)} | ${checkDate(
         release_date
