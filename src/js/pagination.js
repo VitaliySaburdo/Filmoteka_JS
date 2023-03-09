@@ -5,11 +5,14 @@ import { renderGalleryFilms } from './gallery';
 const ApiService = new newsApiService();
 
 const cardsContainer = document.querySelector('.gallery-list');
-const paginationBar = document.querySelector('.pagination-btns');
+const paginationBar = document.querySelector('.pagination');
 const prevBtn = document.querySelector('.page-btn.prev');
 const nextBtn = document.querySelector('.page-btn.next');
 
 let totalPage = 0;
+
+console.log(paginationBar.childNodes[1] = 2)
+
 
 async function main() {
   nextBtn.addEventListener('click', onNextBtn);
@@ -19,6 +22,9 @@ async function main() {
   totalPage = total_pages;
   // const data = await ApiService.fetchTrendingMovie();
   // const { page } = await ApiService.fetchTrendingMovie();
+
+
+  // console.log(data)
 
   async function onNextBtn() {
     if (ApiService.currentPage < totalPage) {
