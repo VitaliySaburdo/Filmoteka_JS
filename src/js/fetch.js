@@ -8,12 +8,14 @@ export default class NewsApiService {
     this.searchQuery = '';
     this.page = 1;
     this.lang = '';
+    this.totalPage = null;
   }
   // Запрос популярных фильмов на главную страницу
   async fetchTrendingMovie() {
     try {
       const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${this.page}`;
       const response = await axios.get(url);
+      this.totalPages = response.data.total_pages;
       return response.data;
     } catch (error) {
       console.log(error);
@@ -63,11 +65,9 @@ export default class NewsApiService {
   get currentPage() {
     return this.page;
   }
-
   set currentPage(newPage) {
     this.page = newPage;
   }
-
   get query() {
     return this.searchQuery;
   }
