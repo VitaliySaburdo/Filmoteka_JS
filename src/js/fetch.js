@@ -59,6 +59,15 @@ export default class NewsApiService {
       console.log(error);
     }
   }
+
+  get currentPage() {
+    return this.page;
+  }
+
+  set currentPage(newPage) {
+    this.page = newPage;
+  }
+
   get query() {
     return this.searchQuery;
   }
