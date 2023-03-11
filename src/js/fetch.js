@@ -5,17 +5,16 @@ const API_KEY = 'ab57a8d74b0df3fdba80a78e42f32d17';
 
 export default class NewsApiService {
   constructor() {
-    this.searchQuery = '';
+    this.query = '';
     this.page = 1;
     this.lang = '';
-    this.totalPage = null;
   }
   // Запрос популярных фильмов на главную страницу
   async fetchTrendingMovie() {
+    console.log(this.page);
     try {
       const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${this.page}`;
       const response = await axios.get(url);
-      this.totalPages = response.data.total_pages;
       return response.data;
     } catch (error) {
       console.log(error);
@@ -68,10 +67,10 @@ export default class NewsApiService {
   set currentPage(newPage) {
     this.page = newPage;
   }
-  get query() {
-    return this.searchQuery;
+  get searchQuery() {
+    return this.query;
   }
-  set query(newQuery) {
-    this.searchQuery = newQuery;
+  set searchQuery(newQuery) {
+    this.query = newQuery;
   }
 }

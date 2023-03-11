@@ -4,44 +4,49 @@ import { renderGalleryFilms } from './gallery';
 
 const ApiService = new newsApiService();
 
-const cardsContainer = document.querySelector('.gallery-list');
-const paginationBar = document.querySelector('.pagination');
+;
 const prevBtn = document.querySelector('.page-btn.prev');
 const nextBtn = document.querySelector('.page-btn.next');
 
-let totalPage = 0;
-
-console.log(paginationBar.childNodes[1] = 2)
-
 
 async function main() {
-  nextBtn.addEventListener('click', onNextBtn);
-  prevBtn.addEventListener('click', onPrevBtn);
+    nextBtn.addEventListener('click', onNextBtn);
+    prevBtn.addEventListener('click', onPrevBtn);
 
-  const { total_pages } = await ApiService.fetchTrendingMovie();
-  totalPage = total_pages;
-  // const data = await ApiService.fetchTrendingMovie();
-  // const { page } = await ApiService.fetchTrendingMovie();
-
-
-  // console.log(data)
-
-  async function onNextBtn() {
-    if (ApiService.currentPage < totalPage) {
-      ApiService.currentPage += 1;
-      const { results } = await ApiService.fetchTrendingMovie();
-      cardsContainer.innerHTML = '';
-      renderGalleryFilms(results);
+    async function getData() {
+        const cardsContainer = document.querySelector('.gallery-list')
+        const { results } = await ApiService.fetchTrendingMovie();
+        cardsContainer.innerHTML = '';
+        renderGalleryFilms(results);
     }
-  }
-  async function onPrevBtn() {
-    if (ApiService.currentPage > 1) {
-      ApiService.currentPage--;
-      const { results } = await ApiService.fetchTrendingMovie();
-      cardsContainer.innerHTML = '';
-      renderGalleryFilms(results);
+
+    function markupPagination() {
+        let coints = 7;
+        const paginationBar = document.querySelector('.pagination');
+        for (let i = 0; i < coints; i++) {
+            const liEl = document.createElement('li');
+            liEl.classList.add('page');
+            liEl.textContent = ApiService.currentPage + i;
+            paginationBar.appendChild(liEl);
+            liEl.addEventListener('click', () => {
+                ApiService.currentPage = liEl.textContent;
+                getData()
+            })
+        }
     }
-  }
+    markupPagination()
+    function onNextBtn() {
+        ApiService.currentPage++;
+        getData()
+
+    }
+
+    function onPrevBtn() {
+        if (ApiService.currentPage > 1) {
+            ApiService.currentPage--;
+            getData()
+        }
+    }
 }
 
 main();
